@@ -1,15 +1,25 @@
-describe langauges::Base do
-  subject { langauges::Base }
+describe Langauges::Base do
+  subject { Langauges::Base }
 
 
-  describe "Gets langauges page" do
-    it "must have open "http://en.wikipedia.org/wiki/List_of_languages_by_number_of_native_speakers" " do
-      Nokogiri.must_open("http://en.wikipedia.org/wiki/List_of_languages_by_number_of_native_speakers")
+  describe "retrieving Wiki page" do
+    it "must have a get_document method" do
+      subject.must_respond_to(:get_document)
     end
   end
 
-    describe "Gets the langauge table" do
-    it "must have open the table with the class "wikitable sortable jquery-tablesorter" " do
-      Nokogiri.must_open("http://en.wikipedia.org/wiki/List_of_languages_by_number_of_native_speakers")
+  describe "retrieving the first column in the table" do
+    it "must have 'class=wikitable sortable jquery-tablesorter'" do
+      subject.must_respond_to(column.at(th[1]))
     end
   end
+
+  describe "puts all the Langauges in an array" do
+    it "must have over 20 langauges" do
+      array.count > 50
+    end
+  end
+
+
+
+end
